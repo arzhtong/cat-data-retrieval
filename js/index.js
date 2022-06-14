@@ -1,3 +1,4 @@
+
 const api_key='c33c54f0-8a51-4163-8d53-f8cae130c004';
 
 const request = new XMLHttpRequest(),
@@ -10,32 +11,31 @@ request.onreadystatechange=function(){
         console.log("work");
          try{
              var data=JSON.parse(request.responseText);
+             document.getElementById('id').innerHTML = data[0]['id'];
+             document.getElementById('url').innerHTML =data[0]['url'];
+             var html = '<img src="' + data[0]['url'] + '">';
+             document.getElementById('image').innerHTML = html;
              for (let i=0;i<data.length;i++){
              var selections=document.getElementById('breed_select');
             var option = document.createElement("option");
             option.text=data[i]['name'];
             option.id=data[i]['id'];
             selections.add(option);
-                 
-             
+
+
              }
          }catch(exception){
              console.log(exception.message);
              return;
-         }
-        
      }
 }
-request.send();
-function getCatImage(data){
-    document.getElementById('id').innerHTML = data[0]['id'];
-    document.getElementById('url').innerHTML =data[0]['url'];
-    var html = '<img src="' + data[0]['url'] + '">';
-    document.getElementById('image').innerHTML = html;
-}
 
-            
-             
-    
-        
-    
+}
+request.send();
+
+// function getCatImage(data){
+//     document.getElementById('id').innerHTML = data[0]['id'];
+//     document.getElementById('url').innerHTML =data[0]['url'];
+//     var html = '<img src="' + data[0]['url'] + '">';
+//     document.getElementById('image').innerHTML = html;
+// }
